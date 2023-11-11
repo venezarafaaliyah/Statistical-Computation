@@ -1,0 +1,22 @@
+koding = function(data)
+{
+
+n = length(data)
+kategori = matrix(nrow=n, ncol=1)
+
+for(i in 1:n)
+{
+       if (data[i] <= 70)
+       {
+       kategori[i] = "kurus"
+       }
+       else
+       {
+       kategori[i] = "normal"
+       }
+}
+kategori = kategori
+data.lengkap = as.data.frame(cbind(data,kategori))
+list(data.lengkap = data.lengkap)
+
+}

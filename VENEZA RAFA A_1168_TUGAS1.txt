@@ -1,0 +1,40 @@
+data_xl=read.csv("E:/SEM 4/KOMSTAT/praktikum.csv");data
+x=data_xl$usia
+y=data_xl$tinggi
+varian_kovarians_korelasi=function(x,y)
+{
+ n=length(x)
+ m=length(y)
+ sx=matrix(nrow = n,ncol = 1)
+ sy=matrix(nrow = m,ncol = 1)
+ xbar=sum(x)/n
+ ybar=sum(y)/m
+ ssxy=matrix(nrow=n,ncol=1)
+ ssx=matrix(nrow=n,ncol=1)
+ ssy=matrix(nrow=n, ncol=1)
+ ssy2=matrix(nrow=n,ncol=1)
+ ssx2=matrix(nrow=n,ncol=1)
+ for(i in 1:n)
+ {
+ sx[i]=(x[i]-xbar)
+ sy[i]=(y[i]-ybar)
+ ssxy[i]=(x[i]*y[i])
+ ssx[i]=(x[i])
+ ssy[i]=(y[i])
+ ssx2[i]=(x[i])^2
+ ssy2[i]=(y[i])^2
+ }
+ jka=sum(ssxy)
+ jkb=sum(ssx)
+ jkc=sum(ssy)
+ jkd=sum(ssx2)
+ jke=sum(ssy2)
+ J=sy*sx
+ JK=sum(J)
+ varx=sum(sx^2)/(n-1)
+ vary=sum(sy^2)/(n-1)
+ kovv=JK/(n-1)
+ kor=(n*jka-jkb*jkc)/((sqrt(n*jkd-(jkb)^2))*(sqrt(n*jke-(jkc)^2)))
+ list(varians_x=varx,varians_y=vary,korelasis=kor,kovarians=kovv)
+}
+varian_kovarians_korelasi(x,y)

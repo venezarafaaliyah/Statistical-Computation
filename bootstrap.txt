@@ -1,0 +1,57 @@
+boot = function(data, R, m, Uji)
+{
+Uji=Uji
+N = length(data)
+rata_sample = matrix(nrow=R, ncol=1)
+
+for(i in 1:R)
+{
+data_sample = sample(data,m,replace=T)
+rata_sample[i] = mean(data_sample)
+}
+rata_bootstrap = mean(rata_sample)
+
+cat("H0 : mu0 =", Uji,"\n")
+cat("H0 : mu0 !=", Uji,"\n")
+cat("===============================","\n")
+cat("hasil rata-rata bootstrap=",rata_bootstrap,"\n")
+cat("===============================","\n")
+
+sd_boot = sd(rata_sample)
+N_boot = R
+
+BB = rata_bootstrap - 1.96*(sd_boot/sqrt(N_boot))
+BA = rata_bootstrap + 1.96*(sd_boot/sqrt(N_boot))
+
+if(Uji >= BB & Uji <= BA)
+{
+cat("Kesimpulan = Gagal tolak H0", "\n")
+}
+else
+{
+cat("Kesimpulan = tolak H0", "\n")
+}
+
+hist(as.vector(rata_sample))
+list(rata_bootstrap=rata_bootstrap, sd = sd_boot, BB,BA)
+}
+
+bootstrap=function(x,y,n, rep)
+{
+  N=length(x)
+  Cor=matrix(nrow=rep, ncol=1)
+  no=c(1:N)
+  
+  for(i in 1:rep){
+    R=sample(no,n,replace=TRUE)
+    X_new=x[R]
+    Y_new=y[R]
+    Cor[i]=cor(X_new, Y_new)
+  }
+  rata.bootstrap=mean(Cor)
+cat("===================================","\n")
+cat("hasil rata-rata bootstrap",rata.bootstrap,"\n")
+cat("===================================","\n")
+  hist(as.vector(Cor))
+  list(penaksir.boot=rata.bootstrap)
+}

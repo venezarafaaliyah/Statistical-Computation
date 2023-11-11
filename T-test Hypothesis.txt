@@ -1,0 +1,47 @@
+Hypothesis_test = function(data, mu0, pilihan, alpha)
+{
+  
+  n = length(data)
+  s= sd(data)
+  xbar = mean(data)
+  t = (xbar-mu0)/(s/sqrt(n));t
+  
+  if (pilihan == 1)	#lower test
+  {
+    t.alpha = qt(1-alpha, df=n-1)
+    pval = pt(t, df=n-1)
+    test= ">="
+    test2= "<"
+  }
+  else if (pilihan == 2)	#upper test
+  {
+    t.alpha = qt(1-alpha, df=n-1)
+    pval = pt(t, df=n-1,lower.tail=FALSE)
+    test= "<="
+    test2= ">"
+  }
+  else	#two tailed
+  {
+    t.half.alpha = qt(1-alpha/2, df=n-1)
+    pval = 2*pt(t, df=n-1)
+    test= "="
+    test2= "!="
+  }
+
+    cat("==================================","\n")
+    cat("H0 : mu0",test,mu0,"\n")
+    cat("H1 : mu0",test2,mu0,"\n")
+    cat("==================================","\n")
+    cat("pvalue=",pval,"\n")
+
+  if (pval <= alpha)
+  {
+    cat("Decision : Reject H0","\n")
+  }
+  else
+  {
+    cat("Decision : Failed to reject H0","\n")
+  }
+  
+  list (t.test = t, t.table = t.alpha, pvalue = pval)
+}

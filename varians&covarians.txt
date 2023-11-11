@@ -1,0 +1,44 @@
+varian = function(data)
+{
+
+n = length(data)
+xbar = mean(data)
+
+xx = matrix(nrow=n, ncol=1)
+
+for(i in 1:n)
+{
+
+xx[i] = (data[i]-xbar)^2
+
+}
+
+varians = sum(xx)/(n-1)
+
+list(varians = varians)
+
+}
+
+covarians = function(data1, data2)
+{
+
+n = length(data1)
+xbar1 = mean(data1)
+xbar2 = mean(data2)
+
+xx = matrix(nrow=n, ncol=1)
+
+for(i in 1:n)
+{
+
+xx[i] = (data1[i]-xbar1)*(data2[i]-xbar2)
+
+}
+
+covarians = sum(xx)/(n-1)
+
+list(covarians = covarians)
+
+}
+
+

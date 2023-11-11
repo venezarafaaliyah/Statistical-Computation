@@ -1,0 +1,75 @@
+uji_hipotesa = function(data, mu0, pilihan, alpha)
+{
+  
+  n = length(data)
+  sigma = sd(data)
+  xbar = mean(data)
+  z = (xbar-mu0)/(sigma/sqrt(n))
+  
+  if (pilihan == 1)	#lower test
+  {
+    z.alpha = qnorm(1-alpha)
+    pval = pnorm(z)
+  }
+  else if (pilihan == 2)	#upper test
+  {
+    z.alpha = qnorm(1-alpha)
+    pval = pnorm(z, lower.tail=FALSE)
+  }
+  else	#not equal
+  {
+    z.alpha = qnorm(1-alpha/2)
+    pval = 2*pnorm(z)
+  }
+  
+  if (pval <= alpha)
+  {
+    print("keputusan : tolak H0")
+  }
+  else
+  {
+    print("keputusan : gagal tolak H0")
+  }
+  
+  list (z.hitung = z, z.tabel = z.alpha, pvalue = pval)
+}
+
+uji_hipotesa2 = function(data, mu0, pilihan, alpha)
+{
+  
+  n = length(data)
+  sigma = sd(data)
+  xbar = mean(data)
+  z = (xbar-mu0)/(sigma/sqrt(n))
+  
+  if (pilihan == 1)	#lower test
+  {
+    z.alpha = qnorm(1-alpha)
+    pval = pnorm(z)
+  }
+  else if (pilihan == 2)	#upper test
+  {
+    z.alpha = qnorm(1-alpha)
+    pval = pnorm(z, lower.tail=FALSE)
+  }
+  else	#not equal
+  {
+    z.alpha = qnorm(1-alpha/2)
+    pval = 2*pnorm(z)
+  }
+  
+  if (pval <= alpha)
+  {
+  cat("==================================","\n")
+  cat("pvalue=",pval,"\n")
+  cat("Keputusan : Tolak H0","\n")
+  }
+  else
+  {
+    cat("==================================","\n")
+    cat("pvalue=",pval,"\n")
+    cat("keputusan : gagal tolak H0","\n")
+  }
+  
+  list (z.hitung = z, z.tabel = z.alpha, pvalue = pval)
+}

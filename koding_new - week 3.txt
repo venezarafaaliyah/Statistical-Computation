@@ -1,0 +1,53 @@
+koding1 = function(data1, data2)
+{
+
+n = length(data1)
+kategori = matrix(nrow=n, ncol=1)
+
+for (i in 1:n)
+
+{
+	if (data1[i] <= 70 && data2[i] >= 40)
+	{
+	kategori[i] = "kurus"
+	}
+	else
+	{
+	kategori[i] = "normal"
+	}
+}
+
+kategori = kategori
+data.lengkap = as.data.frame(cbind(data1, data2, kategori))
+list (data.lengkap = data.lengkap)
+
+}
+
+koding2 = function(data1, data2)
+{
+
+n = length(data1)
+kategori = matrix(nrow=n, ncol=1)
+
+for (i in 1:n)
+
+{
+	if (data1[i] <= 70 && data2[i] == 1 )
+	{
+	kategori[i] = "kurus"
+	}
+	if else (data1[i] > 70 && data2[i] == 1)
+	{
+	kategori[i] = "normal"
+	}
+        else (data1[i] != 70 && data2[i] == 1)
+        {
+        kategori[i] = " "
+        }
+}
+
+kategori = kategori
+data.lengkap = as.data.frame(cbind(data1, data2, kategori))
+list (data.lengkap = data.lengkap)
+
+}
